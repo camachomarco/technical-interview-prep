@@ -1,0 +1,1 @@
+function CP(a: [], b: []) {}

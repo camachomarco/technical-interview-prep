@@ -60,7 +60,7 @@ class BinaryTree<T> {
     if (!root) {
       return false;
     } else {
-      if (root.value == value) {
+      if (root.value === value) {
         return true;
       } else if (root.value > value) {
         return this.search(root.left, value);

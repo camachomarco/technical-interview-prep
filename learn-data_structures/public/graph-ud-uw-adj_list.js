@@ -8,11 +8,25 @@ class Graph {
     }
     addVertex(vertex) {
         if (!this.adjacencyList[vertex])
-            this.adjacencyList[vertex] = [];
+            this.adjacencyList[vertex] = new Set();
     }
     addEdge(vertex1, vertex2) {
-        this.adjacencyList[vertex1].push(vertex2);
-        this.adjacencyList[vertex2].push(vertex1);
+        if (!this.adjacencyList[vertex1] || !this.adjacencyList[vertex2])
+            return null;
+        this.adjacencyList[vertex1].add(vertex2);
+        this.adjacencyList[vertex2].add(vertex1);
+    }
+    removeEdge(vertex1, vertex2) {
+        this.adjacencyList[vertex1].delete(vertex2);
+        this.adjacencyList[vertex2].delete(vertex1);
+    }
+    removeVertex(vertex) {
+        if (!this.adjacencyList[vertex])
+            return;
+        for (let adjVertex of this.adjacencyList[vertex]) {
+            this.removeEdge(vertex, adjVertex);
+        }
+        delete this.adjacencyList[vertex];
     }
     generateDotFile() {
         let dotContent = "graph {\n";

@@ -62,7 +62,7 @@ class BinaryTree {
             return false;
         }
         else {
-            if (root.value == value) {
+            if (root.value === value) {
                 return true;
             }
             else if (root.value > value) {
